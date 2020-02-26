@@ -1,34 +1,28 @@
-// 考情表
+// 考勤表
 const mongoose = require('mongoose');
 const Schema=mongoose.Schema;
 
 const attendanceSchema=new Schema({
-    company_users:{
+    users:{
         type:Schema.Types.ObjectId,
         ref:'users'
     },//商家信息,存储用户ObjectId
-    employee_users:{
+    staffs:{
         type:Schema.Types.ObjectId,
-        ref:'users'
-    },//员工信息,存储用户ObjectId
-    jobs:{
-        type:Schema.Types.ObjectId,
-        ref:'jobs'
-    },//岗位信息，存储岗位ObjectId
-    attendance_date:{
-        type:Date,
-        require:true
-    },//考勤日期
-    workhours:{
+        ref:'staffs'
+    },//员工信息,存储用户ObjectId(考勤表与员工表关联)
+    work_hours:{
+        type:Number,
+        required:true
+    },//考勤工时
+    work_time:{
         type:String,
         require:true
-    },//工作时长
+    },//考勤日期
     date:{
         type:Date,
         default:Date.now()
     }
-
-
 })
 
 module.exports=mongoose.model('attendances',attendanceSchema);

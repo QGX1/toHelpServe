@@ -5,7 +5,7 @@ const Schema=mongoose.Schema;
 const collectSchema=new Schema({
     users:{
         type:Schema.Types.ObjectId,
-        ref:'jobs'
+        ref:'users'
     },//用户关联表
     jobs:{
         type:Schema.Types.ObjectId,

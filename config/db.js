@@ -1,3 +1,5 @@
+const co = require('co');
+const moment = require('moment');
 // 配置公共的数据库
 var mongoose=require('mongoose');
 // build the connectiong string

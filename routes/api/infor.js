@@ -56,6 +56,7 @@ router.post('/addInfor',checkToken,(req,res)=>{
  * access private
 */
 router.get('/msg/:user_id',checkToken,(req,res)=>{
+    console.log(3333,req.params,req.user._id)
     if(req.params.user_id!=req.user._id){ return res.status(401).json({status:0,msg:'用户未登陆'});}
     // console.log(99,req.params.user_id)
     // console.log(req.params)

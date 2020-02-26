@@ -18,8 +18,7 @@ const userSchema =new Schema({
         required:true
     },
     user_avatar:{
-        type:String,
-        default:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1620038707,2392030161&fm=26&gp=0.jpg'
+        type:String
     },
     user_phone:{
         type:String,
@@ -33,6 +32,10 @@ const userSchema =new Schema({
     },
     // 商家公司-职位【例如：阿里巴巴CEO】
     user_company_position:{
+        type:String
+    },
+    // 商家公司
+    user_company:{
         type:String
     },
     user_incumbency:{

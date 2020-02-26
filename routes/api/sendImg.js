@@ -41,16 +41,17 @@ var upload = multer({
  * access private
  */
 router.post('/uploadImg',checkToken,(req,res)=>{
-//    console.log(req.body.Base64Str)
+    // console.log(111,req.body.Base64Str)
     var Base64Str = req.body.Base64Str;
     let dataTime=getNowFormatDate();
     //过滤data:URL
     var dataBuffer = new Buffer(Base64Str, 'base64');
+    //console.log(111,req.body.Base64Str)
     let imgSrc=`public/images/picture/${dataTime}.jpg`;
     let imgSrc1=`images/picture/${dataTime}.jpg`;
     fs.writeFile(imgSrc, dataBuffer, function(err) {
     if(err){
-            res.send(err);
+            res.json({code:1,msg:'图片过大无法上传',err});
         }else{
             res.json({msg:"保存成功！",code:0,imgSrc:imgSrc1});
         }
