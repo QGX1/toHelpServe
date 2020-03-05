@@ -305,6 +305,7 @@ router.post('/forgetPwd', (req, res) => {
         const user_email = req.body.email;
         const subject = '互助--邮件'
         const text = '亲爱的用户：该功能暂时未开放'
+        const html='亲爱的用户：该功能暂时未开放'
         // const html = `<h4>亲爱的${user_limit}：若要找回密码请点击下方链接:</h4><a class="elem-a" href="https://baidu.com"><span class="content-elem-span">找回密码</span></a>`
         const sendResult = emailCfg.sendMail(user_email, subject, text, html)
         if (sendResult) {
