@@ -54,6 +54,7 @@ router.get('/getDynamic', checkToken, (req, res) => {
     //假设传过来的数据有limit(限制条数)、preNum(当前所在页from)、nextNum(要去的页to)、_id(当前页最后一个id)
     // 该分页处理是通过当前页数据的最后一个或_id字段到服务器比较objectId大小进行分页
     // if(req.body.user_id!=req.user._id){ return res.status(401).json({code:1,msg:'用户未登陆'});}
+    console.log(req.query)
     req.query = JSON.parse(req.query.value);//将字符串变成json数据
     //console.log(111,req.query)
     let nextNum = req.query.nextNum;
@@ -187,6 +188,24 @@ router.get('/getDynamic/:user_id', checkToken, (req, res) => {
                 })
             }
             res.json({ code: 0, msg: docs, count: countNum })
+        })
+});
+
+/**
+ * router api/dynamic/adminstDeleteDynamic
+ * desc   管理员权限，删除动态
+ * access private
+ */
+router.delete('/adminstDeleteDynamic', checkToken, (req, res) => {
+    if (req.body.user_id != req.user._id) { return res.status(401).json({ code: 0, msg: '用户未登陆' }); }
+    comments.remove({ dynamic_id: req.body.dynamic_id })
+    likes.remove({ dynamic_id: req.body.dynamic_id })
+        .then(result => {
+            dynamics.remove({ _id: req.body.dynamic_id })
+                .then(result => {
+                    if (!result) return res.json({ code: 1, msg: '出错' })
+                    return res.json({ code: 0, msg: '已删除' })
+                })
         })
 });
 module.exports = router;

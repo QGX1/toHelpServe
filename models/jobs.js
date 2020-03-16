@@ -67,6 +67,10 @@ const jobSchema=new Schema({
     job_nature:{
         type:Boolean,//是否为在校勤工岗
     },
+    job_examine:{
+        type:String,//管理员是否已审核
+        default:"未审核"
+    },
     date:{
         type:Date,
         default:Date.now(),

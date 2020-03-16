@@ -64,12 +64,13 @@ router.get('/msg/:user_id',checkToken,(req,res)=>{
         .populate('users')
         .populate('target_users')
         .then(result=>{
-            if(!result) return res.json({code:0,msg:'没有任何消息'})
+            console.log('消息',result.length)
+            if(result.length<=0) return res.json({code:0,msg:'没有任何消息'})
             // 过滤数据，与对应的id的值
             let msgObj=result.filter((item,index,result)=>{
                 // console.log(222,item.target_users._id)
                 // console.log(333,req.params.user_id)
-                // console.log(444,item.user_id)
+                // console.log(444,item.target_users._id)
                 return (item.user_id==req.params.user_id)||(item.target_users._id==req.params.user_id);
             })
             //console.log(1888,msgObj)

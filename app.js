@@ -17,6 +17,7 @@ var jobs = require('./routes/api/jobs');
 var staff = require('./routes/api/staff');
 var attendance = require('./routes/api/attendance');
 var collect = require('./routes/api/collect');
+var complaint = require('./routes/api/complaint');
 var app = express();
 
 // view engine setup
@@ -69,6 +70,7 @@ app.use('/api/job', jobs);
 app.use('/api/staff', staff);
 app.use('/api/attendance', attendance);
 app.use('/api/collect', collect);
+app.use('/api/complaint', complaint);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
