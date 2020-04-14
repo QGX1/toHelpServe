@@ -1,16 +1,8 @@
-// 评论表
+// 评论集合
 const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 
 const commentSchema=new Schema({
-    // user:{
-    //     type:Schema.Types.ObjectId,
-    //     ref:'users'
-    // },//与users表关联
-    // dynamic:{
-    //     type:Schema.Types.ObjectId,
-    //     ref:'dynamics'
-    // },//与dynamics表关联
     dynamic_id:{
         type:String,
         required:true

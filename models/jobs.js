@@ -6,21 +6,10 @@ const jobSchema=new Schema({
         type:Schema.Types.ObjectId,
         ref:'users'
     },//发布者的id,关联用户
-    // collect:{
-    //     type:Schema.Types.ObjectId,
-    //     ref:'user'
-    // },//关联收藏
-    // collect_id:{
-    //     type:String,
-    // },//收藏表_id
     job_post:{
         type:String,
         required:true
     },//岗位名称
-    // job_company:{
-    //     type:String,
-    //     required:true
-    // },//岗位公司名称
     job_salary:{
         type:String,
         required:true

@@ -47,8 +47,8 @@ router.post('/uploadImg',checkToken,(req,res)=>{
     //过滤data:URL
     var dataBuffer = new Buffer(Base64Str, 'base64');
     //console.log(111,req.body.Base64Str)
-    let imgSrc=`public/images/picture/${dataTime}.jpg`;
-    let imgSrc1=`images/picture/${dataTime}.jpg`;
+    let imgSrc=`public/images/picture/${dataTime}.jpg`;//图片存放地址
+    let imgSrc1=`${dataTime}.jpg`;//返回图片名给用户
     fs.writeFile(imgSrc, dataBuffer, function(err) {
     if(err){
             res.json({code:1,msg:'图片过大无法上传',err});

@@ -3,6 +3,7 @@ const WebSocket=require('ws');
 
 // 定义webshocket服务器
 const wsServer= new WebSocket.Server({port:3030});
+console.log(`websocket is running on port 3030`)
 // 定义连接到的webSocket集合
 let socketSet=[];
 
@@ -10,7 +11,7 @@ let socketSet=[];
 wsServer.on('connection',(websocket,req,res)=>{
     console.log('web',req.url)
     const userId=req.url.split('/');
-    console.log(222,userId[1])
+    //console.log(222,userId[1])
     let isExist =false;//标记当前用户是否在线
     socketSet.forEach(ws=>{
        // console.log(444,ws)

@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "supervisor ./bin/www",
-    "socket": "supervisor webSocket.js"
+    "socket": "supervisor webSocket.js",
+    "dev":"concurrently \"npm start\" \"npm run socket\""
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

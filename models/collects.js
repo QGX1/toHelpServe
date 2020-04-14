@@ -1,4 +1,4 @@
-// 岗位收藏表
+// 岗位收藏集合
 const mongoose = require('mongoose');
 const Schema=mongoose.Schema;
 

@@ -1,4 +1,4 @@
-// 员工表
+// 员工集合
 const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 const staffSchema=new Schema({
@@ -7,22 +7,7 @@ const staffSchema=new Schema({
         type:Schema.Types.ObjectId,
         ref:'users'
     },
-    //员工姓名
-    staff_name: {
-        type:String,
-        required:true
-    },
-    //员工邮箱
-    staff_email: {
-        type:String,
-        required:true
-    },
-    //员工手机号码
-    staff_phone: {
-        type:String,
-        required:true
-    },
-    //员工手机号码
+    //员工岗位
     staff_position: {
         type:String,
         required:true
@@ -34,8 +19,8 @@ const staffSchema=new Schema({
     },
     //员工的id
     staff_id:{
-        type:String,
-        required:true
+        type:Schema.Types.ObjectId,
+        ref:'users'
     },
     // 是否离职
     staff_quit:{

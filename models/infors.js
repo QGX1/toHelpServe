@@ -1,4 +1,4 @@
-// 消息表
+// 消息集合
 const mongoose=require('mongoose');
 const Schema= mongoose.Schema;//数据模型
 

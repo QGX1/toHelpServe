@@ -17,9 +17,6 @@ router.post('/addStaff', checkToken, (req, res) => {
     staffs.findOne({ staff_id: req.body.staff_id, users: req.body.users }).then(staff => {
         if (staff) res.json({ code: 1, msg: '存在该员工' });
         let newStaff = new staffs({
-            staff_name: req.body.staff_name,
-            staff_email: req.body.staff_email,
-            staff_phone: req.body.staff_phone,
             staff_position: req.body.staff_position,
             staff_time: req.body.staff_time,
             staff_id: req.body.staff_id,
@@ -42,7 +39,10 @@ router.post('/addStaff', checkToken, (req, res) => {
 router.get('/getStaff/:user_id', checkToken, (req, res) => {
     console.log(req.params);
     if (req.params.user_id != req.user._id) { return res.status(401).json({ code: 0, msg: '用户未登陆' }); }
-    staffs.find({ users: req.params.user_id }).sort({ _id: -1 }).then(staff => {
+    staffs.find({ users: req.params.user_id })
+    .populate('staff_id')
+    .sort({ _id: -1 })
+    .then(staff => {
         if (staff.length <= 0) return res.json({ code: 1, msg: '无数据' })
         res.json({ code: 0, msg: staff });
     })
@@ -79,7 +79,6 @@ router.delete('/deleteStaff',checkToken,(req,res)=>{
     console.log(req.body)
     if (req.body.users != req.user._id) { return res.status(401).json({ code: 0, msg: '用户未登陆' }); }
     staffs.remove({_id:req.body._id}).then(staff=>{
-        console.log(staff)
         if(staff) return res.json({code:0,msg:'已删除'})
         return res.json({code:1,msg:'删除失败，请重新操作'})
     })

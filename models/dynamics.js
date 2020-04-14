@@ -1,4 +1,4 @@
-// 动态表
+// 分享集合
 const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 
@@ -16,10 +16,7 @@ const dynamicSchema=new Schema({
         type:Schema.Types.ObjectId,
         ref:'likes'
     },
-    // user_id:{
-    //     type:String,
-    //     required:true
-    // },
+
     dynamic_text:{
         type:String,
     },
@@ -28,9 +25,6 @@ const dynamicSchema=new Schema({
             type:String
         }
     ],
-    imgType:{
-        type:Number
-    },
     date:{
         type:Date,
         default:Date.now()

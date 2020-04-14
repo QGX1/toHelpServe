@@ -56,7 +56,12 @@ router.get('/getAttendance/:users',checkToken,(req,res)=>{
     // 联表查询
     attendances.find({users:req.params.users})
     .populate('users')
-    .populate('staffs')
+    .populate({
+        path:'staffs',
+        populate:{
+            path:'staff_id'
+        }
+    })
     .sort({work_time:-1})
     .then(result=>{
         return res.json({code:0,msg:result})
@@ -76,15 +81,14 @@ router.get('/getStaffAttendance',checkToken,(req,res)=>{
     .populate({
         path:'staffs',
         populate:({
-            path:'users',
-            select:'_id user_name'          
+            path:'staff_id'         
         })
     })//员工信息
     .sort({work_time:-1})
     .then(result=>{
         if(result.length>0){
             let newResult=result.filter((item)=>{
-                return item.staffs.staff_email== req.query.user_email;  
+                return item.staffs.staff_id.user_email== req.query.user_email;  
             })
             return res.json({code:0,msg:newResult});
         }

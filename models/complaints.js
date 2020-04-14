@@ -1,4 +1,4 @@
-// 投诉表
+// 投诉集合
 const mongoose = require('mongoose');
 const Schema=mongoose.Schema;
 

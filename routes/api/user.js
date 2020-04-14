@@ -26,7 +26,6 @@ router.get('/phoneCode/:user_phone', (req, res) => {
     let user_phone = req.params.user_phone;
     // 2、生成随机验证码
     var code = randomCode(6);
-    //console.log(code)
     // 3、将验证码发送给指定的手机号码
     sendCode(user_phone, code, (success) => {
         // 验证码发送成功，将验证码保存在userCode中
@@ -104,11 +103,10 @@ router.post('/register', (req, res) => {
  */
 router.post('/login', function (req, res) {
     // console.log(req.body.captcha)
-    // console.log(req.session.captcha)
     const user_email = req.body.user_email;
     const user_password = req.body.user_password;//用户密码要加密
-    // console.log(req.body)
-    if (req.body.captcha.toLowerCase() != req.session.captcha) return res.json({ code: 1, msg: '验证码不正确' })
+    console.log(req.body,req.session.captcha)
+    // if (req.body.captcha.toLowerCase() != req.session.captcha) return res.json({ code: 1, msg: '验证码不正确' })
     // 删除保存的验证码
     delete req.session.captcha;
     // 查询数据库
@@ -171,7 +169,7 @@ router.get('/verify', function (req, res) {
     });
     req.session.captcha = captcha.text.toLowerCase();
     // console.log(req.session)
-    // console.log(req.session)
+    console.log(req.session)
     return res.type('svg').send(captcha.data)
 })
 

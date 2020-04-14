@@ -11,8 +11,6 @@ const QS = require('qs')
  */
 router.post('/addComment',checkToken,(req,res)=>{
     // 判断当前用户是否和要进行操作的用户信息相同
-    console.log(666)
-    console.log(QS.parse(req.body))
     req.body=QS.parse(req.body)
     if(req.body.comment_list.user_id!=req.user._id){ return res.status(401).json({status:0,msg:'用户未登陆'});}
     // 判断当前动态是否已存在数据库中
@@ -27,14 +25,14 @@ router.post('/addComment',checkToken,(req,res)=>{
                     if(err) throw err
                     dynamics.update({_id:req.body.dynamic_id},
                         {$set:{comments:commentFile._id}}).then(result=>{
-                            return res.json({code:1,msg:'完成'})
+                            return res.json({code:0,msg:'完成'})
                         })
                 })
             }
             comment.comment_list.push(req.body.comment_list);
             comment.save().then(result=>{
-                if(result.length<=0) res.status(404).json({code:0,msg:'未完成'});
-                res.json({code:1,msg:'完成'})
+                if(result.length<=0) res.status(404).json({code:1,msg:'未完成'});
+                res.json({code:0,msg:'完成'})
             })
         })
 });

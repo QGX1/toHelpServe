@@ -1,4 +1,4 @@
-// 点赞表
+// 点赞集合
 const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 const likeSchema=new Schema({
